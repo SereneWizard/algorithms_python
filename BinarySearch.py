@@ -4,13 +4,13 @@ def binarySearch(A, l, r, x):
     if r == l:
         if A[mid] == x:
             print ("Hi here")
-            return 0
+            return mid
         else: 
             return -1
     else:
         if A[mid] == x:
             print ("Hi there")
-            return 0
+            return mid
         else:
             if A[mid] > x: 
                 return binarySearch(A, l, mid-1, x)
@@ -22,6 +22,9 @@ def binarySearch(A, l, r, x):
 
 if __name__ == "__main__":
     A = [2, 5, 7, 8, 12, 14, 20, 27]
-    val = 19
+    val = 5
     C = binarySearch(A, 0, len(A)-1, val)
-    print(C)
+    if C != -1:
+        print ("Value {} exists at index {}".format(val, C))
+    else:
+        print (C)
