@@ -1,36 +1,43 @@
 
-def merge (A, B):
-    na = len(A)
-    nb = len(B)
-    n = na + nb
+def merge(A, l, m, r):
+    n1 = m-l+1
+    n2 = r-m-1
+    
 
-    C = [None]*n
-    ha = 0
-    hb = 0
-    i = 0
-    while ha < na and hb < nb:
-        if A[ha] <= B[hb]:
-            C[i] = A[ha]
-            ha += 1
+    L = [0] * n1
+    R = [0] * n2
+
+    for i in range(n1):
+        L[i] = A[i]
+
+    for i in range(n2):
+        R[i] = A[m+1+i]
+
+    print (L, R)
+    i,j=0,0
+    n=l
+    while i<n1 and j<n2:
+        if L[i] < R[j]:
+            A[n] = L[i]
+            i += 1
         else:
-            C[i] = B[hb]
-            hb += 1
-        i += 1
+            A[n] = R[j]
+            j += 1
+        n += 1
 
-    if ha > na:
-        while hb < nb: 
-            C[i] = B[hb]
-            hb += 1
+
+    if i < n1:
+        while i < n1:
+            A[n] = L[i]
             i += 1
-    else: 
-        while ha < na:
-            C[i] = A[ha]
-            ha += 1
-            i += 1
-    return C
+    else:
+        while j < n2:
+            A[n] = R[j]
+            j += 1
+
+        
 
 if __name__ == "__main__":
-    A = [2, 7, 8, 12, 17, 20]
-    B = [3, 4, 9, 11, 15]
-    C = merge(A, B)
-    print(C)
+    A = [2,1,3]
+    merge(A, 0, 0, len(A))
+    print(A)
